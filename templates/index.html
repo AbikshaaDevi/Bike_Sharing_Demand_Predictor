@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Bike Sharing Demand Predictor</title>
+</head>
+<body style="font-family: Arial, sans-serif; display:flex; justify-content:center; padding:30px;">
+  <div style="width:520px;">
+    <h2 style="text-align:center">Bike Sharing Demand Predictor</h2>
+
+    <!-- form container with separate background -->
+    <div style="background:#f5ded3; padding:18px; border-radius:8px;">
+      <form method="post" action="/">
+        <table style="width:100%; border-collapse:collapse;">
+          <tr>
+            <td style="padding:8px; width:48%;">Season (1=Spring, 2=Summer, 3=Fall, 4=Winter):</td>
+            <td style="padding:8px; width:52%;">
+              <input name="season" type="number" min="1" max="4" required style="width:100%;" />
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:8px;">Holiday (0=No, 1=Yes):</td>
+            <td style="padding:8px;">
+              <select name="holiday" style="width:100%;" required>
+                <option value="">Select</option>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:8px;">Working Day (0=No, 1=Yes):</td>
+            <td style="padding:8px;">
+              <select name="workingday" style="width:100%;" required>
+                <option value="">Select</option>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:8px;">Weather (1=Clear, 2=Mist, 3=Light Snow/Rain, 4=Heavy Rain):</td>
+            <td style="padding:8px;">
+              <input name="weather" type="number" min="1" max="4" required style="width:100%;" />
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:8px;">Temperature (0 to 1):</td>
+            <td style="padding:8px;">
+              <input name="temp" type="number" step="0.01" min="0" max="1" required style="width:100%;" />
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:8px;">Humidity (0 to 1):</td>
+            <td style="padding:8px;">
+              <input name="humidity" type="number" step="0.01" min="0" max="1" required style="width:100%;" />
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:8px;">Windspeed (0 to 1):</td>
+            <td style="padding:8px;">
+              <input name="windspeed" type="number" step="0.01" min="0" max="1" required style="width:100%;" />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align:center; padding-top:12px;">
+              <button type="submit" style="padding:8px 20px; border-radius:6px;">Predict</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+    <!-- prediction result centered below form -->
+    <div style="text-align:center; margin-top:18px;">
+      {% if prediction %}
+        <div style="display:inline-block; padding:12px 18px; border-radius:6px; background:#ffffff; box-shadow:0 0 6px rgba(0,0,0,0.08);">
+          <strong>Predicted Bike Demand: {{ prediction }}</strong>
+        </div>
+      {% else %}
+        <div style="color:#666; font-size:14px;">Enter values and click Predict</div>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>
